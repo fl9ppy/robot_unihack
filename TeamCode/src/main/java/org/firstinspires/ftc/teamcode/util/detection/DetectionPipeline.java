@@ -1,6 +1,4 @@
-package org.firstinspires.ftc.teamcode.DARK;
-
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+package org.firstinspires.ftc.teamcode.drive.detection;
 
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
@@ -13,7 +11,7 @@ import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvPipeline;
 
 import java.util.ArrayList;
-@Disabled
+
 public class DetectionPipeline extends OpenCvPipeline {
     private static final Scalar BLUE = new Scalar(0, 0, 255);
     private static final Scalar RED = new Scalar(255, 0, 0);
@@ -29,7 +27,7 @@ public class DetectionPipeline extends OpenCvPipeline {
     private static Scalar lowerOrange = new Scalar(60,135,10);
     private static Scalar upperOrange = new Scalar(190,180,105);
 
-//    private static Scalar lowerRed = new Scalar(0,170,60);
+    //    private static Scalar lowerRed = new Scalar(0,170,60);
 //    private static Scalar upperRed = new Scalar(80,255,255);
     private static Scalar lowerRed = new Scalar(0,130,50);
     private static Scalar upperRed = new Scalar(120,255,255);
@@ -109,7 +107,7 @@ public class DetectionPipeline extends OpenCvPipeline {
 
                 String zoneName = Integer.toString((numberOfElements + 1));
 
-            //  Imgproc.putText(input, zoneName, center , Imgproc.FONT_ITALIC , 1, BLUE,1);
+                //  Imgproc.putText(input, zoneName, center , Imgproc.FONT_ITALIC , 1, BLUE,1);
 
                 Imgproc.rectangle(input, p1, p2, BLUE, 2);
                 centerZones[numberOfElements] = center;
