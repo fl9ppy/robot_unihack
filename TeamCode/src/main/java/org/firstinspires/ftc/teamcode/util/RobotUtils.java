@@ -24,6 +24,9 @@ public class RobotUtils {
     int poz_retras = 0;
     int poz_intake_open = 0;
     int poz_intake_close = 0;
+    int poz_tureta_centru = 0;
+    int poz_tureta_stanga = 0;
+    int poz_tureta_dreapta = 0;
     int distanta_de_detectat = 10;
     public RobotUtils(HardwareMap hardwareMap){
 
@@ -84,6 +87,32 @@ public class RobotUtils {
     public void retract(){
         servo1.setPosition(poz_retras);
         servo2.setPosition(poz_retras);
+    }
+
+    public void goUp(){
+        goSliderToPosition(poz_ridicat, 0.5);
+    }
+
+    public void goDown(){
+        goSliderToPosition(poz_jos, 0.5);
+    }
+
+    public void goTurretCenter(){
+        tureta.setTargetPosition(poz_tureta_centru);
+        tureta.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        tureta.setPower(0.5);
+    }
+
+    public void goTurretLeft(){
+        tureta.setTargetPosition(poz_tureta_stanga);
+        tureta.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        tureta.setPower(0.5);
+    }
+
+    public void goTurretRight(){
+        tureta.setTargetPosition(poz_tureta_dreapta);
+        tureta.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        tureta.setPower(0.5);
     }
 
     public void open_intake(){

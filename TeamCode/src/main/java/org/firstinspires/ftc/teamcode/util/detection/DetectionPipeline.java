@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.drive.detection;
+package org.firstinspires.ftc.teamcode.util.detection;
 
 import org.opencv.core.Core;
 import org.opencv.core.CvType;

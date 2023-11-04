@@ -47,7 +47,7 @@ public class Run extends LinearOpMode {
     private RobotUtils robot;
     OpenCvCamera webcam;
 
-    org.firstinspires.ftc.teamcode.drive.detection.DetectionPipeline detectionPipeline;
+    org.firstinspires.ftc.teamcode.util.detection.DetectionPipeline detectionPipeline;
 
     boolean bCameraOpened = false;
     private SampleMecanumDrive drive;
@@ -73,7 +73,7 @@ public class Run extends LinearOpMode {
     int LEFT = 1;
     int MIDDLE = 2;
     int RIGHT = 3;
-    org.firstinspires.ftc.teamcode.drive.detection.AprilTagDetectionPipeline aprilTagDetectionPipeline;
+    org.firstinspires.ftc.teamcode.util.detection.AprilTagDetectionPipeline aprilTagDetectionPipeline;
     AprilTagDetection tagOfInterest = null;
 
     public void runOpMode() throws InterruptedException {
@@ -81,10 +81,10 @@ public class Run extends LinearOpMode {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
 
-        aprilTagDetectionPipeline = new org.firstinspires.ftc.teamcode.drive.detection.AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
+        aprilTagDetectionPipeline = new org.firstinspires.ftc.teamcode.util.detection.AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
 
 
-        detectionPipeline = new org.firstinspires.ftc.teamcode.drive.detection.DetectionPipeline();
+        detectionPipeline = new org.firstinspires.ftc.teamcode.util.detection.DetectionPipeline();
         webcam.setPipeline(aprilTagDetectionPipeline);
 
         webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
@@ -108,7 +108,7 @@ public class Run extends LinearOpMode {
         robot.extend();
         robot.open_intake();
 
-        org.firstinspires.ftc.teamcode.drive.detection.DetectionPipeline pipeline = new org.firstinspires.ftc.teamcode.drive.detection.DetectionPipeline();
+        org.firstinspires.ftc.teamcode.util.detection.DetectionPipeline pipeline = new org.firstinspires.ftc.teamcode.util.detection.DetectionPipeline();
 
         waitForStart();
 
@@ -199,25 +199,59 @@ public class Run extends LinearOpMode {
                     sleep(100);
                     robot.retract();
                     sleep(500);
-                    robot.goSliderToPosition(1000, 0.5);
+                    robot.goUp();
                     robot.goTurretLeft();
                     sleep(2000);
                     robot.extend();
                     sleep(1500);
-                    robot.deschideGheara();
+                    robot.open_intake();
                     sleep(200);
                     robot.retract();
                     sleep(500);
                     robot.goTurretCenter();
                     robot.goDown();
                     sleep(1500);
-                    robot.extinde();;
+                    robot.extend();
                     break;
                 case 2:
-                    drive.followTrajectorySequence(parkMid);
+                    sleep(1000);
+                    robot.close_intake();
+                    sleep(100);
+                    robot.retract();
+                    sleep(500);
+                    robot.goUp();
+                    robot.goTurretRight();
+                    sleep(2000);
+                    robot.extend();
+                    sleep(1500);
+                    robot.open_intake();
+                    sleep(200);
+                    robot.retract();
+                    sleep(500);
+                    robot.goTurretCenter();
+                    robot.goDown();
+                    sleep(1500);
+                    robot.extend();
                     break;
                 case 3:
-                    drive.followTrajectorySequence(parkRight);
+                    sleep(1000);
+                    robot.close_intake();
+                    sleep(100);
+                    robot.retract();
+                    sleep(500);
+                    robot.goUp();
+                    robot.goTurretCenter();
+                    sleep(2000);
+                    robot.extend();
+                    sleep(1500);
+                    robot.open_intake();
+                    sleep(200);
+                    robot.retract();
+                    sleep(500);
+                    robot.goTurretCenter();
+                    robot.goDown();
+                    sleep(1500);
+                    robot.extend();
                     break;
             }
         }
