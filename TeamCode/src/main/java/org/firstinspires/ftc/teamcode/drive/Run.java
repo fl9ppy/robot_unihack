@@ -50,10 +50,6 @@ public class Run extends LinearOpMode {
     org.firstinspires.ftc.teamcode.util.detection.DetectionPipeline detectionPipeline;
 
     boolean bCameraOpened = false;
-    private SampleMecanumDrive drive;
-
-
-    static final double FEET_PER_METER = 3.28084;
 
     // Lens intrinsics
     // UNITS ARE PIXELS
@@ -133,7 +129,6 @@ public class Run extends LinearOpMode {
                             break;
                         }
                     }
-
                     if(tagFound)
                     {
                         telemetry.addLine("Tag of interest is in sight!\n\nLocation data:");
@@ -168,21 +163,18 @@ public class Run extends LinearOpMode {
                         telemetry.addLine("\nBut we HAVE seen the tag before; last seen at:");
                         tagToTelemetry(tagOfInterest);
                     }
-
                 }
-
                 telemetry.update();
                 sleep(20);
             }
 
-            if(tagOfInterest != null)
-            {
+            if(tagOfInterest != null){
                 telemetry.addLine("Tag snapshot:\n");
                 tagToTelemetry(tagOfInterest);
                 telemetry.update();
             }
-            else
-            {
+
+            else{
                 telemetry.addLine("No tag snapshot available, it was never sighted during the init loop :(");
                 telemetry.update();
             }
@@ -191,6 +183,7 @@ public class Run extends LinearOpMode {
             robot.extend();
             robot.open_intake();
             }
+
             else{
             switch(tagOfInterest.id){
                 case 1:
@@ -255,11 +248,20 @@ public class Run extends LinearOpMode {
                     break;
             }
         }
-
             drive.update();
-
         }
         telemetry.update();
     }
+    void tagToTelemetry(AprilTagDetection detection)
+    {
+        telemetry.addLine(String.format("\nDetected tag ID=%d", detection.id));
+//        telemetry.addLine(String.format("Translation X: %.2f feet", detection.pose.x*FEET_PER_METER));
+//        telemetry.addLine(String.format("Translation Y: %.2f feet", detection.pose.y*FEET_PER_METER));
+//        telemetry.addLine(String.format("Translation Z: %.2f feet", detection.pose.z*FEET_PER_METER));
+//        telemetry.addLine(String.format("Rotation Yaw: %.2f degrees", Math.toDegrees(detection.pose.yaw)));
+//        telemetry.addLine(String.format("Rotation Pitch: %.2f degrees", Math.toDegrees(detection.pose.pitch)));
+//        telemetry.addLine(String.format("Rotation Roll: %.2f degrees", Math.toDegrees(detection.pose.roll)));
+    }
+
 }
 
